@@ -5,6 +5,7 @@ DAEMON=${USER}/mazacoin-new
 BLOCKS=${USER}/mazablocks:empty
 WALLET=${USER}/mazawallets
 LDB=${USER}/mazawatch-ldb
+LDBIMG=${USER}/mazawatch-ldb
 EXPLORER=${USER}/mazawatch
 EXPLORERIMG=${USER}/mazawatch
 P2P_OUTSIDE=12835
@@ -41,7 +42,13 @@ if [ "${avail}X" = "X" ] ; then
 fi
 mwavail=`docker images |awk '{print $1":"$2}' |grep ${EXPLORER}`
 echo "${mwavail}"
+mwldbavail=`docker images |awk '{print $1":"$2}' |grep ${LDB}`
+echo "${mwavail}"
 
+if [ "${mwldbavail}X" = "X" ] ;then
+   docker pull ${LDBIMG}
+   docker images |awk '{print $1":"$2}' |grep ${LDB} || docker tag ${LDBIMG}  ${LDB}
+fi
 if [ "${mwavail}X" = "X" ] ;then
    docker pull ${EXPLORERIMG}
    docker images |awk '{print $1":"$2}' |grep ${EXPLORER} || docker tag ${EXPLORERIMG}  ${EXPLORER}
