@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+cd /mazachain
+env > /mazachain/env
+chown mazachain.maza /mazachain/env
+if [ ! -h /home/mazachain/.mazacoin ] ; then
+   ln -s /home/maza/.mazacoin /home/mazachain/.mazacoin
+fi
+chown mazachain.maza /home/mazachain
+
+exec su mazachain -c /mazachain/start.sh
