@@ -1,6 +1,8 @@
 docker-mazawatch
 ================
 
+## Deprecated see [mazaclub/mazachain-mazacoind](https://github.com/docker-mazachain-mazacoind)
+
 Builds a docker with mazawatch ready to run in 
 testnet or livenet modes
 
